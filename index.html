@@ -1,48 +1,50 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <title>My Free E-Commerce Shop</title>
-  <link rel="stylesheet" href="style.css">
-</head>
-<body>
+<header>
+  🛒 My Online Shop
+</header>
 
-<h1>🛒 My Online Shop</h1>
+<div class="container">
 
-<div class="product">
-  <h3>Physical Product</h3>
-  <p>₱299</p>
-  <button onclick="addToCart('Physical Product', 299)">Add to Cart</button>
+  <h2>🔥 Products</h2>
+
+  <div class="products">
+    <div class="product">
+      <h3>Physical Product</h3>
+      <p class="price">₱299</p>
+      <button onclick="addToCart('Physical Product', 299)">Add to Cart</button>
+    </div>
+
+    <div class="product">
+      <h3>Digital Product</h3>
+      <p class="price">₱150</p>
+      <button onclick="addToCart('Digital Product', 150)">Add to Cart</button>
+    </div>
+
+    <div class="product">
+      <h3>Service</h3>
+      <p class="price">₱500</p>
+      <button onclick="addToCart('Service', 500)">Add to Cart</button>
+    </div>
+  </div>
+
+  <div class="cart-box">
+    <h2>🛒 Cart</h2>
+    <div id="cart"></div>
+    <p><strong>Total: ₱<span id="total">0</span></strong></p>
+  </div>
+
+  <div class="cart-box">
+    <h2>🧾 Checkout</h2>
+    <form onsubmit="sendOrder(event)">
+      <input type="text" placeholder="Full Name" required>
+      <input type="text" placeholder="Address / Email" required>
+      <button type="submit">Place Order</button>
+    </form>
+
+    <p>
+      💸 <strong>GCash:</strong> 09XXXXXXXXX <br>
+      💸 <strong>Maya:</strong> 09XXXXXXXXX <br>
+      Send payment screenshot after checkout
+    </p>
+  </div>
+
 </div>
-
-<div class="product">
-  <h3>Digital Product</h3>
-  <p>₱150</p>
-  <button onclick="addToCart('Digital Product', 150)">Add to Cart</button>
-</div>
-
-<div class="product">
-  <h3>Service</h3>
-  <p>₱500</p>
-  <button onclick="addToCart('Service', 500)">Add to Cart</button>
-</div>
-
-<hr>
-
-<h2>🛒 Cart</h2>
-<div id="cart"></div>
-<p><strong>Total: ₱<span id="total">0</span></strong></p>
-
-<h2>🧾 Checkout</h2>
-<form onsubmit="sendOrder(event)">
-  <input type="text" placeholder="Full Name" required><br><br>
-  <input type="text" placeholder="Address / Email" required><br><br>
-  <button type="submit">Place Order</button>
-</form>
-
-<p>
-📱 <strong>GCash:</strong> 09XXXXXXXXX<br>
-📱 <strong>Maya:</strong> 09XXXXXXXXX<br>
-Send payment screenshot after checkout.
-</p>
-
