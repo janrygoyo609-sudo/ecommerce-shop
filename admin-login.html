@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Admin Login - E-Commerce Shop</title>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body class="bg-light">
+
+<div class="container mt-5">
+  <h2 class="text-center mb-4">Admin Portal</h2>
+
+  <div class="row justify-content-center">
+    <div class="col-md-5">
+
+      <!-- Admin Sign Up -->
+      <div class="card mb-3">
+        <div class="card-header">Admin Sign Up</div>
+        <div class="card-body">
+          <input class="form-control mb-2" id="adminSignupUser" placeholder="Username">
+          <input type="password" class="form-control mb-2" id="adminSignupPass" placeholder="Password">
+          <button class="btn btn-success w-100" onclick="adminSignup()">Sign Up</button>
+        </div>
+      </div>
+
+      <!-- Admin Login -->
+      <div class="card">
+        <div class="card-header">Admin Login</div>
+        <div class="card-body">
+          <input class="form-control mb-2" id="adminLoginUser" placeholder="Username">
+          <input type="password" class="form-control mb-2" id="adminLoginPass" placeholder="Password">
+          <button class="btn btn-primary w-100" onclick="adminLogin()">Log In</button>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<script>
+// Initialize admin list if empty
+if(!localStorage.getItem('admins')){
+  localStorage.setItem('admins', JSON.stringify([]));
+}
+
+// Admin Sign-Up
+function adminSignup(){
+  const user = document.getElementById('adminSignupUser').value.trim();
+  const pass = document.getElementById('adminSignupPass').value.trim();
+  if(!user || !pass){ alert("Fill all fields"); return; }
+
+  const admins = JSON.parse(localStorage.getItem('admins'));
+  if(admins.some(a => a.username === user)){
+    alert("Username already exists");
+    return;
+  }
+
+  admins.push({username: user, pass});
+  localStorage.setItem('admins', JSON.stringify(admins));
+  alert("Admin registered successfully! Now log in.");
+  document.getElementById('adminSignupUser').value = '';
+  document.getElementById('adminSignupPass').value = '';
+}
+
+// Admin Login
+function adminLogin(){
+  const user = document.getElementById('adminLoginUser').value.trim();
+  const pass = document.getElementById('adminLoginPass').value.trim();
+  const admins = JSON.parse(localStorage.getItem('admins'));
+
+  const found = admins.find(a => a.username === user && a.pass === pass);
+  if(found){
+    localStorage.setItem('loggedInAdmin', user);
+    alert("Login successful! Redirecting to dashboard...");
+    window.location.href = "admin-dashboard.html";
+  } else {
+    alert("Incorrect username or password");
+  }
+}
+</script>
+</body>
+</html>
